@@ -71,7 +71,7 @@ public class playerMovimiento : MonoBehaviour
             
             movement = direction * (speed * Vsprint) * Time.deltaTime;
 
-           transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction),0.005f );
+           transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction),0.02f );
         }
         else
         {
