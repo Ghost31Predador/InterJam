@@ -35,12 +35,13 @@ public class playerMovimiento : MonoBehaviour
 
 
            Vector3 direction = forward * ver + right * hor;
+
             direction.Normalize();
 
 
             movement = direction * speed * Time.deltaTime;
 
-            transform.rotation = Quaternion.LookRotation(direction);
+           transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction),0.005f );
         }
         movement.y += gravity * Time.deltaTime;
         characterController.Move(movement);
