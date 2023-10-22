@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &35115169 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 804414735971713681, guid: 13cbe171d107a7c49a896dc9145716df, type: 3}
+  m_PrefabInstance: {fileID: 3235122658797213893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &362227765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5880151922247571296, guid: 13cbe171d107a7c49a896dc9145716df, type: 3}
@@ -210,6 +215,14 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1176305524}
+    - target: {fileID: 7410960019765438543, guid: 13cbe171d107a7c49a896dc9145716df, type: 3}
+      propertyPath: correr
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410960019765438543, guid: 13cbe171d107a7c49a896dc9145716df, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 35115169}
     - target: {fileID: 8363679069712674571, guid: 13cbe171d107a7c49a896dc9145716df, type: 3}
       propertyPath: m_Name
       value: gaticoB
