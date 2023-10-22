@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void CambiarEscena(string name)
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene("BigCity");
     }
     public void FuncionCerrarJuego()
     {
