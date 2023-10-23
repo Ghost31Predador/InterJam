@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Wait : MonoBehaviour
 {
 
-    public float wait_time = 126; 
+    public float wait_time = 131; 
     // Start is called before the first frame update
     void Start()
     {
