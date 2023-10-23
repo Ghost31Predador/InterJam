@@ -35,5 +35,4 @@ public class MusicManager : MonoBehaviour
             _audioSource.clip = songs[songPicked];
             _audioSource.Play();
     }
-
 }
