@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+
 
 public class ControladorPersonaje : MonoBehaviour
 {
+
+    
     private CharacterController characterController;
     private Vector3 escalaInicial;
     public float factorCrecimiento = 0.2f;
@@ -65,9 +69,14 @@ public class ControladorPersonaje : MonoBehaviour
                     }
                     objyum -= objyum;
                 }
+
                 objyum += 1;
                 Debug.Log("comio obj");
+
+                
             }
         }
+        
     }
+ 
 }

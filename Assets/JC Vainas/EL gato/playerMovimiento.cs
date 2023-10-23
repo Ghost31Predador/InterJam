@@ -78,6 +78,7 @@ public class playerMovimiento : MonoBehaviour
             animator.SetFloat("move", 0);
 
         }
+
         movement.y += gravity * Time.deltaTime;
         characterController.Move(movement);
 
