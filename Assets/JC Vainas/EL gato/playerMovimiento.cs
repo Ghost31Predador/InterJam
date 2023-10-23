@@ -5,11 +5,11 @@ using UnityEngine;
 public class playerMovimiento : MonoBehaviour
 {
         private CharacterController characterController;
-    public new Transform camera;
+    public  new Transform camera;
     public float speed = 4;
     public float gravity = -9.8f;
     public int Vsprint = 1;
-
+    
     public Animator animator;
 
 
