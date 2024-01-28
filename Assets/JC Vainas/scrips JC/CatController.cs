@@ -14,6 +14,7 @@ public class CatController : MonoBehaviour
     private float Vsprint = 1;
     private Vector3 velocity; // La velocidad actual del gato
     public float gravity = -9.81f; // La gravedad que quieres aplicar
+    private Vector3 inputDirection;
 
     void Start()
     {
@@ -22,19 +23,8 @@ public class CatController : MonoBehaviour
 
     void Update()
     {
-        // Si el gato no está en el suelo, aplica la gravedad
-        if (!controller.isGrounded)
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
-        else
-        {
-            // Si el gato está en el suelo, resetea la velocidad vertical
-            velocity.y = 0;
-        }
 
-        // Aplica la velocidad al gato
-        controller.Move(velocity * Time.deltaTime);
+
 
         //seccion de animaciones 
 
@@ -58,9 +48,27 @@ public class CatController : MonoBehaviour
             Vsprint = 1;
         }
 
-        // Obtiene la dirección de movimiento basada en la entrada del usuario
-        Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+    }
+    private void FixedUpdate()
+    {
+
+        // Si el gato no está en el suelo, aplica la gravedad
+        if (!controller.isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+        else
+        {
+            // Si el gato está en el suelo, resetea la velocidad vertical
+            velocity.y = 0;
+        }
+
+        // Aplica la velocidad al gato
+        controller.Move(velocity * Time.deltaTime);
+
+ 
         // Si hay alguna entrada del usuario, actualiza la dirección de movimiento
         if (inputDirection.magnitude > 0.1f)
         {
@@ -80,6 +88,5 @@ public class CatController : MonoBehaviour
         {
             animator.SetFloat("move", 0);
         }
-
     }
 }
