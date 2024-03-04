@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void CambiarEscena(string name)
+    public void CambiarEscena()
     {
-        SceneManager.LoadScene("BigCity");
+        SceneManager.LoadScene(1);
     }
     public void FuncionCerrarJuego()
     {
         Application.Quit(); 
     }
 
-    public void Regresar(string name) 
+    public void Regresar() 
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(0);
     }
 }
