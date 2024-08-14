@@ -29,11 +29,21 @@ public class FollowCamera : MonoBehaviour
         // Asegúrate de que la cámara siempre esté mirando al gato
         transform.LookAt(target);
 
-        // Obtiene la entrada del mouse
-        currentY += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        // Obtiene la entrada de las teclas "J" y "L" para rotar la cámara
+        float rotationInput = 0f;
+        if (Input.GetKey(KeyCode.J))
+        {
+            rotationInput = -1f; // Rotar hacia la izquierda
+        }
+        else if (Input.GetKey(KeyCode.L))
+        {
+            rotationInput = 1f; // Rotar hacia la derecha
+        }
 
-        // Rota la cámara alrededor del gato basado en la entrada del mouse
+        // Rota la cámara alrededor del gato basado en la entrada de las teclas
+        currentY += rotationInput * rotationSpeed * Time.deltaTime;
+
+        // Aplica la rotación
         transform.RotateAround(target.position, Vector3.up, currentY);
     }
 }
-

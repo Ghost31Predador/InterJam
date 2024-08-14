@@ -37,7 +37,7 @@ public class CatController : MonoBehaviour
             animator.SetBool("hit", false);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.Q))
         {
             Vsprint = 4;
             animator.SetBool("correr", true);
