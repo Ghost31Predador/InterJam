@@ -4,10 +4,12 @@ using TMPro;
 using UnityEngine;
 
 
-public class ControladorPersonaje : MonoBehaviour
+public class destruir : MonoBehaviour
 {
 
-    
+    public ScoreManager scoreManager;  // Referencia al ScoreManager
+    public int pointsPerObject = 10;   // Puntos por cada objeto destruido
+
     private CharacterController characterController;
     private Vector3 escalaInicial;
     public float factorCrecimiento = 0.2f;
@@ -17,6 +19,11 @@ public class ControladorPersonaje : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         escalaInicial = transform.localScale;
+
+        if (scoreManager == null)
+        {
+            Debug.LogError("ScoreManager no está asignado en el inspector.");
+        }
     }
 
     // Este método se llama cuando el Character Controller colisiona con otro Collider
@@ -36,7 +43,10 @@ public class ControladorPersonaje : MonoBehaviour
 
             if (TObj.x < Tgato.x && TObj.y < Tgato.y && TObj.z < Tgato.z)
             {
+
                 Destroy(hit.collider.gameObject);
+                // Sumar puntaje
+                scoreManager.AddScore(pointsPerObject);
                 if (objyum == contador)
                 {
 
