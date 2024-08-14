@@ -35,6 +35,6 @@ public class Timer : MonoBehaviour
     void EndGame()
     {
         // Cargar la escena de fin del juego
-        SceneManager.LoadScene("Main Menu"); // Cambia "Main Menu" por el nombre de tu escena
+        SceneManager.LoadScene("BigCity"); // Cambia "Main Menu" por el nombre de tu escena
     }
 }
