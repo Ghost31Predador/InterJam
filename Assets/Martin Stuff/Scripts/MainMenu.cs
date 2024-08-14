@@ -7,11 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void CambiarEscena()
     {
-<<<<<<< Updated upstream
-        SceneManager.LoadScene(2);
-=======
         SceneManager.LoadScene("BigCity");
->>>>>>> Stashed changes
     }
     public void FuncionCerrarJuego()
     {
