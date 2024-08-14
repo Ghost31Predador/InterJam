@@ -6,6 +6,9 @@ public class Timer : MonoBehaviour
 {
     public float gameTime = 60f;        // Duración del temporizador en segundos
     public TextMeshProUGUI timerText;   // Componente TextMeshProUGUI para mostrar el tiempo
+    public GameObject endGameUI;        // El panel de UI que se mostrará al final del juego
+
+    private bool isGameOver = false;    // Estado del juego
 
     void Start()
     {
@@ -14,10 +17,18 @@ public class Timer : MonoBehaviour
         {
             Debug.LogError("TimerText no está asignado en el inspector.");
         }
+        if (endGameUI == null)
+        {
+            Debug.LogError("EndGameUI no está asignado en el inspector.");
+        }
+        endGameUI.SetActive(false); // Asegúrate de que la UI de fin de juego esté oculta al inicio
     }
 
     void Update()
     {
+        if (isGameOver)
+            return; // No hacer nada si el juego ya terminó
+
         // Reduce el tiempo
         gameTime -= Time.deltaTime;
 
@@ -31,10 +42,23 @@ public class Timer : MonoBehaviour
         }
     }
 
-
     void EndGame()
     {
-        // Cargar la escena de fin del juego
-        SceneManager.LoadScene("BigCity"); // Cambia "Main Menu" por el nombre de tu escena
+        isGameOver = true; // Marca el juego como terminado
+        endGameUI.SetActive(true); // Muestra la UI de fin de juego
+
+        // Deshabilita el movimiento del jugador
+        // Asume que tienes un componente de movimiento en el jugador llamado "CharacterControl"
+        CharacterControl playerControl = GetComponent<CharacterControl>();
+        if (playerControl != null)
+        {
+            playerControl.enabled = false;
+        }
+    }
+
+    public void RestartGame()
+    {
+        // Cargar la escena de inicio del juego o reiniciar la escena actual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
