@@ -160459,7 +160459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 909828279}
-  offset: {x: 0, y: 2, z: -7}
+  offset: {x: 0, y: 4.03, z: -7}
   scaleFactor: 1
   rotationSpeed: 200
 --- !u!81 &1226494218
