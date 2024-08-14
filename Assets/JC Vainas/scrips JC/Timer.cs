@@ -46,14 +46,6 @@ public class Timer : MonoBehaviour
     {
         isGameOver = true; // Marca el juego como terminado
         endGameUI.SetActive(true); // Muestra la UI de fin de juego
-
-        // Deshabilita el movimiento del jugador
-        // Asume que tienes un componente de movimiento en el jugador llamado "CharacterControl"
-        CharacterControl playerControl = GetComponent<CharacterControl>();
-        if (playerControl != null)
-        {
-            playerControl.enabled = false;
-        }
     }
 
     public void RestartGame()
