@@ -113425,7 +113425,6 @@ MonoBehaviour:
   cam: {fileID: 1226494219}
   speed: 3
   rotationSpeed: 0.15
-  stickSensitivity: 2
   animator: {fileID: 783676484}
   gravity: -9.81
 --- !u!1 &909972908 stripped
