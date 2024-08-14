@@ -10,10 +10,11 @@ public class FollowCamera_Control : MonoBehaviour
     public float rotationSpeed = 100.0f; // La velocidad de rotación de la cámara
 
     private float currentY = 0.0f;
+    private Vector2 lookInput; // Vector2 para almacenar la entrada del joystick derecho
 
     void Start()
     {
-        // Opcional: Atrapa y oculta el cursor del mouse cuando comienza el juego
+        // Atrapa y oculta el cursor del mouse cuando comienza el juego
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -29,8 +30,11 @@ public class FollowCamera_Control : MonoBehaviour
         // Asegúrate de que la cámara siempre esté mirando al gato
         transform.LookAt(target);
 
-        // Obtiene la entrada del joystick derecho para rotar la cámara
-        currentY += Input.GetAxis("RightStickHorizontal") * rotationSpeed * Time.deltaTime;
+        // Obtiene la entrada del joystick derecho
+        lookInput = new Vector2(Input.GetAxis("RightStickHorizontal"), Input.GetAxis("RightStickVertical"));
+
+        // Ajusta la rotación en función de la entrada del joystick derecho
+        currentY += lookInput.x * rotationSpeed * Time.deltaTime;
 
         // Rota la cámara alrededor del gato basado en la entrada del joystick derecho
         transform.RotateAround(target.position, Vector3.up, currentY);

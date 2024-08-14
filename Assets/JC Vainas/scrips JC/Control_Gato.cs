@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-public class CharacterControl : MonoBehaviour
+
+[RequireComponent(typeof(CharacterController))]
+public class Control_Gato : MonoBehaviour
 {
     public Camera cam; // La cámara que estás usando
     public float speed = 3.0F;
     public float rotationSpeed = 0.15F;
-    public float stickSensitivity = 2.0F; // Sensibilidad del stick izquierdo
     private CharacterController controller;
     public Animator animator;
     private float Vsprint = 1;
     private Vector3 velocity; // La velocidad actual del gato
     public float gravity = -9.81f; // La gravedad que quieres aplicar
     private Vector3 inputDirection;
-    private Vector2 lookDirection;
 
     void Start()
     {
@@ -23,8 +22,8 @@ public class CharacterControl : MonoBehaviour
 
     void Update()
     {
-        // Sección de animaciones 
-        if (Input.GetKeyDown(KeyCode.JoystickButton7)) // R2 para pegar
+        // Sección de animaciones
+        if (Input.GetKey(KeyCode.JoystickButton2)) // Botón 2 para golpear
         {
             animator.SetBool("hit", true);
         }
@@ -33,7 +32,7 @@ public class CharacterControl : MonoBehaviour
             animator.SetBool("hit", false);
         }
 
-        if (Input.GetKey(KeyCode.JoystickButton6)) // L2 para sprint
+        if (Input.GetKey(KeyCode.JoystickButton4)) // Botón 4 para sprint
         {
             Vsprint = 4;
             animator.SetBool("correr", true);
@@ -44,25 +43,24 @@ public class CharacterControl : MonoBehaviour
             Vsprint = 1;
         }
 
-        // Movimiento con la palanca izquierda con sensibilidad aumentada
-        inputDirection = new Vector3(Input.GetAxis("Horizontal") * stickSensitivity, 0, Input.GetAxis("Vertical") * stickSensitivity);
-
+        // Movimiento con la palanca izquierda del control
+        inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
     }
 
     private void FixedUpdate()
     {
-        // Si el gato no está en el suelo, aplica la gravedad
+        // Aplica la gravedad si no está en el suelo
         if (!controller.isGrounded)
         {
             velocity.y += gravity * Time.deltaTime;
         }
         else
         {
-            // Si el gato está en el suelo, resetea la velocidad vertical
+            // Resetea la velocidad vertical al tocar el suelo
             velocity.y = 0;
         }
 
-        // Aplica la velocidad al gato
+        // Aplica la velocidad vertical acumulada al gato
         controller.Move(velocity * Time.deltaTime);
 
         // Si hay alguna entrada del usuario, actualiza la dirección de movimiento
