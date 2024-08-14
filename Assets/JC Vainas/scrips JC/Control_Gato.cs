@@ -47,12 +47,6 @@ public class CharacterControl : MonoBehaviour
         // Movimiento con la palanca izquierda con sensibilidad aumentada
         inputDirection = new Vector3(Input.GetAxis("Horizontal") * stickSensitivity, 0, Input.GetAxis("Vertical") * stickSensitivity);
 
-        // Movimiento de la cámara con la palanca derecha
-        lookDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        // Debugging para verificar los valores del stick derecho
-        Debug.Log($"Right Stick Horizontal: {lookDirection.x}");
-        Debug.Log($"Right Stick Vertical: {lookDirection.y}");
     }
 
     private void FixedUpdate()
@@ -90,19 +84,6 @@ public class CharacterControl : MonoBehaviour
         else
         {
             animator.SetFloat("move", 0);
-        }
-
-        // Rotación de la cámara con la palanca derecha
-        if (lookDirection.magnitude > 0.1f)
-        {
-            float rotX = -lookDirection.y * rotationSpeed;
-            float rotY = lookDirection.x * rotationSpeed;
-
-            // Obtiene la rotación actual de la cámara
-            Vector3 currentRotation = cam.transform.eulerAngles;
-
-            // Aplica la rotación en X y Y
-            cam.transform.eulerAngles = new Vector3(currentRotation.x + rotX, currentRotation.y + rotY, 0);
         }
     }
 }
