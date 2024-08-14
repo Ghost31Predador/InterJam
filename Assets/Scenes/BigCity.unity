@@ -95405,6 +95405,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7204854858397102580, guid: 5bc71b6aa91ec7546ad6ce6b1861ac3d, type: 3}
   m_PrefabInstance: {fileID: 783676482}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &783676484 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2073013105855126638, guid: 5bc71b6aa91ec7546ad6ce6b1861ac3d, type: 3}
+  m_PrefabInstance: {fileID: 783676482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &783686381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113420,7 +113425,8 @@ MonoBehaviour:
   cam: {fileID: 1226494219}
   speed: 3
   rotationSpeed: 0.15
-  animator: {fileID: 0}
+  stickSensitivity: 2
+  animator: {fileID: 783676484}
   gravity: -9.81
 --- !u!1 &909972908 stripped
 GameObject:

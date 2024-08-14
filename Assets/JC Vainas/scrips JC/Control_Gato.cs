@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-[RequireComponent(typeof(CharacterController))]
-public class Control_Gato : MonoBehaviour
+public class CharacterControl : MonoBehaviour
 {
     public Camera cam; // La cámara que estás usando
     public float speed = 3.0F;
     public float rotationSpeed = 0.15F;
+    public float stickSensitivity = 2.0F; // Sensibilidad del stick izquierdo
     private CharacterController controller;
     public Animator animator;
     private float Vsprint = 1;
     private Vector3 velocity; // La velocidad actual del gato
     public float gravity = -9.81f; // La gravedad que quieres aplicar
     private Vector3 inputDirection;
+    private Vector2 lookDirection;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class Control_Gato : MonoBehaviour
     void Update()
     {
         // Sección de animaciones 
-        if (Input.GetKeyDown(KeyCode.JoystickButton0)) // Reemplaza KeyCode.JoystickButton0 con el botón adecuado para "hit"
+        if (Input.GetKeyDown(KeyCode.JoystickButton7)) // R2 para pegar
         {
             animator.SetBool("hit", true);
         }
@@ -33,9 +33,7 @@ public class Control_Gato : MonoBehaviour
             animator.SetBool("hit", false);
         }
 
-        float sprintInput = Input.GetAxis("Sprint"); // Reemplaza "Sprint" con el nombre del eje adecuado para el sprint
-
-        if (sprintInput > 0.1f)
+        if (Input.GetKey(KeyCode.JoystickButton6)) // L2 para sprint
         {
             Vsprint = 4;
             animator.SetBool("correr", true);
@@ -46,7 +44,15 @@ public class Control_Gato : MonoBehaviour
             Vsprint = 1;
         }
 
-        inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        // Movimiento con la palanca izquierda con sensibilidad aumentada
+        inputDirection = new Vector3(Input.GetAxis("Horizontal") * stickSensitivity, 0, Input.GetAxis("Vertical") * stickSensitivity);
+
+        // Movimiento de la cámara con la palanca derecha
+        lookDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        // Debugging para verificar los valores del stick derecho
+        Debug.Log($"Right Stick Horizontal: {lookDirection.x}");
+        Debug.Log($"Right Stick Vertical: {lookDirection.y}");
     }
 
     private void FixedUpdate()
@@ -84,6 +90,19 @@ public class Control_Gato : MonoBehaviour
         else
         {
             animator.SetFloat("move", 0);
+        }
+
+        // Rotación de la cámara con la palanca derecha
+        if (lookDirection.magnitude > 0.1f)
+        {
+            float rotX = -lookDirection.y * rotationSpeed;
+            float rotY = lookDirection.x * rotationSpeed;
+
+            // Obtiene la rotación actual de la cámara
+            Vector3 currentRotation = cam.transform.eulerAngles;
+
+            // Aplica la rotación en X y Y
+            cam.transform.eulerAngles = new Vector3(currentRotation.x + rotX, currentRotation.y + rotY, 0);
         }
     }
 }
